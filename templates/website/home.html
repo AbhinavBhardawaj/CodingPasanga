@@ -1,0 +1,215 @@
+    {% extends "layout.html" %}
+    {% load static %}
+    {% load socialaccount %}
+    {% block title %}CodingPasanGa{% endblock %}
+
+    {% block content %}
+        <nav class="flex flex-wrap items-center justify-between bg-black px-6 py-3">
+
+            <a href="{% url "home" %}">
+                <img src="{% static "CodingPasanga.png" %}" alt="" class="h-12">
+            </a>
+            <video src="{% static "cp1.mp4" %}" autoplay loop muted playsinline class="h-6 w-auto mt-2 mx-4"></video>
+
+            {% if user.is_authenticated %}
+                <div class="relative inline-block text-left">
+                    <button id="profilebtn" onclick="toggleDropdown()" class="focus:outline-none">
+                        <img src="{% if user.socialaccount_set.first %}{{user.socialaccount_set.first.get_avatar_url}}{% else  %}{{user.profile_pic.url}}{% endif %}" alt="Profile" class="rounded-full w-12 h-12 object-cover border-2 border-gray-600">
+                    </button>
+
+                    <!--drop down bhaiya-->
+                    <div id="profiledropdown" class="opacity-0 scale-95 pointer-events-none transition trasnform duration-200 ease-out absolute right-0 mt-2 w-40 bg-[#121212] rounded-lg border z-50">
+                        <div class="flex  items-center px-4 py-2 hover:bg-gray-100 gap-1">
+                            <i class="fa-solid fa-user text-gray-800  text-base"></i>
+                            <a href="{% url 'profile' %}" class="text-violet-500">Profile</a>
+                        </div>
+
+                        <div class="flex items-center px-4 py-2 gap-1 hover:bg-red-100">
+                            <i class="fa-solid fa-right-from-bracket text-red-600 "></i>
+                            <form action="{% url 'logout' %}" method = "POST">
+                                {% csrf_token %}
+                                <button type="submit" class="text-red-600">Logout</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>    
+            {% else %}
+                <div class="flex justify-evenly items-center gap-7 text-white-700  rounded">
+                    <a href="{% url 'login' %}" class="rounded bg-violet-700 px-4 py-2 hover:bg-violet-500">Login</a>
+                    <a href="{% url 'signup' %}" class="rounded bg-violet-700 px-4 py-2 hover:bg-violet-500">Sign up</a>
+                </div>
+            {% endif %}
+        </nav>
+        {% comment %} Hero section {% endcomment %}
+        <div class="flex justify-center mt-10 text-5xl">
+            <h1>STart uP a </h1>
+            <h1 class="text-violet-700 ml-4"> Crazy</h1>
+            <h1 class="ml-4">Learning</h1>
+            <h1 class="text-violet-700 gap-1 ml-4">Journey </h1>
+            <h1 class="ml-4">right Here</h1>
+        </div>
+
+        <div class="flex justify-center">
+            <div class=" ml-15 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-15 w-200">
+                <div class="bg-[#ffffff0d] border border-[#3D3D3D] rounded-2xl p-6 shadow-md 
+                    hover:shadow-lg text-white hover:border-violet-500 transition duration-300">
+
+                    <div class="p-4 bg-[#3d3d3d73] rounded-lg  w-[70px] h-[70px]">
+                        <img src="{% static "sheet.png" %}" alt="" class="h-12 p-1 -mt-2 ">
+                    </div>
+                    <div class="font-semibold mt-5">
+                        <h1>DSA sheet</h1>
+                    </div>
+                    <div class="text-[15px] text-[#7A7A7A]">
+                        <h1>Improve your DSA skills Now!</h1>
+                    </div>
+                    <div class="flex gap-2 rounded-full border-2 border-violet-400 px-4 py-2  mt-12  w-fit">
+                        <h1>Dive in</h1>
+                        <i class="fa-solid fa-arrow-right items-center mt-1"></i>
+                    </div>
+                </div>
+                <div class="bg-[#ffffff0d] border border-[#3D3D3D] rounded-2xl p-6 shadow-md 
+                hover:shadow-lg text-white hover:border-violet-500 transition duration-300">
+
+                    <div class="p-4 bg-[#3d3d3d73] rounded-lg  w-[70px] h-[70px]">
+                        <img src="{% static "system.png" %}" alt="" class="h-12 p-1 -mt-2 ">
+                    </div>
+                    <div class="font-semibold mt-5">
+                        <h1>System Design</h1>
+                    </div>
+                    <div class="text-[15px] text-[#7A7A7A]">
+                        <h1>Design system with a better Approach!</h1>
+                    </div>
+                    <div class="flex gap-2 rounded-full border-2 border-violet-400 px-4 py-2  mt-7 w-fit">
+                        <h1>Dive in</h1>
+                        <i class="fa-solid fa-arrow-right items-center mt-1"></i>
+                    </div>
+                </div>
+                <div class="bg-[#ffffff0d] border border-[#3D3D3D] rounded-2xl p-6 shadow-md 
+                hover:shadow-lg text-white hover:border-violet-500 transition duration-300">
+
+                    <div class="p-4 bg-[#3d3d3d73] rounded-lg  w-[70px] h-[70px]">
+                        <img src="{% static "db.png" %}" alt="" class="h-12 p-1 -mt-2 ">
+                    </div>
+                    <div class="font-semibold mt-5">
+                        <h1>DBMS</h1>
+                    </div>
+                    <div class="text-[15px] text-[#7A7A7A]">
+                        <h1>CRUD UR Journey!</h1>
+                    </div>
+                    <div class="flex gap-2 rounded-full border-2 border-violet-400 px-4 py-2  mt-12 w-fit">
+                        <h1>Dive in</h1>
+                        <i class="fa-solid fa-arrow-right items-center mt-1"></i>
+                    </div>
+                </div>
+                <div class="bg-[#ffffff0d] border border-[#3D3D3D] rounded-2xl p-6 shadow-md 
+                hover:shadow-lg text-white hover:border-violet-500 transition duration-300">
+
+                    <div class="p-4 bg-[#3d3d3d73] rounded-lg  w-[70px] h-[70px]">
+                        <img src="{% static "pgm.webp" %}" alt="" class="h-12 p-1 -mt-2 ">
+                    </div>
+                    <div class="font-semibold mt-5">
+                        <h1>Programming Fundamental</h1>
+                    </div>
+                    <div class="text-[15px] text-[#7A7A7A]">
+                        <h1>Hello World!</h1>
+                    </div>
+                    <div class="flex gap-2 rounded-full border-2 border-violet-400 px-4 py-2  mt-13 w-fit">
+                        <h1>Dive in</h1>
+                        <i class="fa-solid fa-arrow-right items-center mt-1"></i>
+                    </div>
+                </div>
+                <div class="bg-[#ffffff0d] border border-[#3D3D3D] rounded-2xl p-6 shadow-md 
+                hover:shadow-lg text-white hover:border-violet-500 transition duration-300">
+
+                    <div class="p-4 bg-[#3d3d3d73] rounded-lg  w-[70px] h-[70px]">
+                        <img src="{% static "data.png" %}" alt="" class="h-12 p-1 -mt-2 ">
+                    </div>
+                    <div class="font-semibold mt-5">
+                        <h1>Data Analysis</h1>
+                    </div>
+                    <div class="text-[15px] text-[#7A7A7A]">
+                        <h1>Lets Play with Data!</h1>
+                    </div>
+                    <div class="flex gap-2 rounded-full border-2 border-violet-400 px-4 py-2  mt-13 w-fit">
+                        <h1>Dive in</h1>
+                        <i class="fa-solid fa-arrow-right items-center mt-1"></i>
+                    </div>
+                </div>
+                <div class="bg-[#ffffff0d] border border-[#3D3D3D] rounded-2xl p-6 shadow-md 
+                hover:shadow-lg text-white hover:border-violet-500 transition duration-300">
+
+                    <div class="p-4 bg-[#3d3d3d73] rounded-lg  w-[70px] h-[70px]">
+                        <img src="{% static "fstack.png" %}" alt="" class="h-12 p-1 -mt-2 ">
+                    </div>
+                    <div class="font-semibold mt-5">
+                        <h1>FullStack Devp</h1>
+                    </div>
+                    <div class="text-[15px] text-[#7A7A7A]">
+                        <h1>Build Up!</h1>
+                    </div>
+                    <div class="flex gap-2 rounded-full border-2 border-violet-400 px-4 py-2  mt-13 w-fit">
+                        <h1>Dive in</h1>
+                        <i class="fa-solid fa-arrow-right items-center mt-1"></i>
+                    </div>
+                </div>                                   
+            </div>
+        </div>
+        <div class="flex justify-center mt-10 text-5xl">
+            <h1>IntRoducing a </h1>
+            <h1 class="text-violet-700 ml-4"> Creative Feature</h1>
+        </div>
+        
+        <div class="flex justify-center mt-10">
+            <div class="grid grid-cols-1 gap-6 w-full max-w-md">
+                <div class="bg-[#ffffff0d] border border-[#3D3D3D] rounded-2xl p-6 shadow-md 
+                    hover:shadow-lg text-white hover:border-violet-500 transition duration-300">
+        
+                    <div class="p-4 bg-[#3d3d3d73] rounded-lg w-[70px] h-[70px]">
+                        <img src="{% static "chat.png" %}" alt="" class="h-12 p-1 -mt-2">
+                    </div>
+                    <div class="font-semibold mt-5">
+                        <h1>Connect</h1>
+                    </div>
+                    <div class="text-[15px] text-[#7A7A7A]">
+                        <h1>Teach & learn through collabarative Interface!</h1>
+                    </div>
+                    <div class="flex gap-2 rounded-full border-2 border-violet-400 px-4 py-2 mt-13 w-fit">
+                        <h1>Dive in</h1>
+                        <i class="fa-solid fa-arrow-right items-center mt-1"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+
+    {% endblock %}
+
+    {% block scripts %}
+        <script>
+            function toggleDropdown(){
+                console.log("dropdown");
+                const dropdown = document.getElementById("profiledropdown");
+                
+                if(dropdown.classList.contains("opacity-0")){
+                    dropdown.classList.remove("opacity-0","scale-95","pointer-events-none");
+                    dropdown.classList.add("opacity-100","scale-100");
+            
+                }
+                else{
+                    dropdown.classList.remove("opacity-100","scale-100");
+                    dropdown.classList.add("opacity-0","scale-95","pointer-events-none");
+                }
+            }
+            
+            window.addEventListener('click',function(e){
+                const button = document.getElementById('profilebtn');
+                const dropdown = document.getElementById('profiledropdown');
+            
+                if(!button.contains(e.target) && !dropdown.contains(e.target) ){
+                    dropdown.classList.remove("opacity-100","scale-100");
+                    dropdown.classList.add("opacity-0","scale-95","pointer-events-none");
+                }
+            });
+        </script>
+    {% endblock %}

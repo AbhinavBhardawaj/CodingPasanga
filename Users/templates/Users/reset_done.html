@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %} Forgot pswd - CodingPasanGa {% endblock %}
+
+{% block content %}
+    <nav class="flex flex-wrap items-center justify-between bg-black px-6 py-3">
+
+        <a href="{% url 'home' %}">
+            <img src="{% static 'CodingPasanga.png' %}" alt="" class="h-12">
+        </a>
+        <video src="{% static 'cp1.mp4' %}" autoplay loop muted playsinline class="h-6 w-auto  mx-auto"></video>
+    </nav>
+
+    <div class=" flex flex-col justify-center items-center mt-10  font-bold text-violet-600">
+        <h1 class="text-white text-3xl">
+            Reset hoigaba, ab chalal ja mardhawa!!!
+        </h1>
+        <h2 class="text-2xl">
+            Your password has been reset. You can login now....
+        </h2>
+        <a href="{% url 'login' %}" class="px-4 py-2 rounded-2xl bg-violet-700 mt-5 text-white">Login</a>
+    </div>
+
+{% endblock %}

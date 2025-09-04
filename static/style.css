@@ -1,0 +1,33 @@
+body{
+    background-color:#121212;
+    color:white;
+
+}
+
+/* .nav{
+    width: 150%;
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+} */
+
+.logging{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4ex;
+}
+
+.progress-circle {
+    transform: rotate(-90deg);
+    transform-origin: center;
+    transition: stroke-width 0.3s ease;
+    pointer-events: none;
+}
+
+.hover-area {
+    fill: transparent;
+    pointer-events: all;
+    cursor: pointer;
+}
